@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:id="@+id/toolbarID"
+    android:orientation="horizontal"
+    android:padding="20dp"
+    android:background="@color/gray"
+    android:gravity="center_vertical">
+
+    <ImageView
+        android:id="@+id/menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/menu" />
+
+    <EditText
+        android:id="@+id/edtTimKiem"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_edt"
+        android:layout_marginLeft="25dp"
+        android:hint="nhập tên truyện"
+        android:textColor="@color/white"
+        android:textColorHint="#a9a9a9"
+        android:paddingLeft="15dp" />
+
+</LinearLayout>

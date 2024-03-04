@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">AppTruyen</string>
+    <string name="nav_home">Trang chủ</string>
+    <string name="nav_category">Thể loại</string>
+    <string name="nav_login">Đăng nhập</string>
+
+    <string name="nav_drawer_open">Open Navigation Drawer</string>
+    <string name="nav_drawer_close">Close Navigation Drawer</string>
+</resources>
