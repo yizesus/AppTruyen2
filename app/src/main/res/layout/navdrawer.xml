@@ -11,7 +11,7 @@
         android:orientation="vertical"
         android:gravity="center_vertical"
         android:padding="16dp"
-        android:background="@drawable/mauden"
+        android:background="@color/gray"
         android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
 
@@ -59,6 +59,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:text="Thể loại"
+            android:textStyle="bold"
             android:textSize="20sp"
             android:drawableLeft="@drawable/ic_category"
             android:drawablePadding="8dp" />
@@ -79,6 +80,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:text="Trang chủ"
+            android:textStyle="bold"
             android:textSize="20sp"
             android:drawableLeft="@drawable/ic_home"
             android:drawablePadding="8dp" />
@@ -102,6 +104,7 @@
         android:orientation="horizontal">
 
         <TextView
+            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
