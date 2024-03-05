@@ -13,108 +13,47 @@
         android:orientation="vertical">
 
         <include layout="@layout/toolbar_detail" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tên Truyện"
+            android:padding="10dp"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="40sp"/>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_height="match_parent"
-            android:layout_width="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-            <GridLayout
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="250dp"
+                android:src="@drawable/truyen" />
+
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:columnCount="2"
-                tools:ignore="MissingConstraints">
+                android:text="Thể loại: " />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="ĐỌC TỪ ĐẦU"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ĐỌC MỚI NHẤT"/>
+        </LinearLayout>
 
-                <Button
-                    android:id="@+id/btn_category_1"
-
-                    android:layout_gravity="fill"
-                    android:layout_columnWeight="1"
-                    android:layout_rowWeight="1"
-                    android:layout_margin="15dp"
-                    android:text="Action" />
-
-                <Button
-                    android:id="@+id/btn_category_2"
-                    android:layout_gravity="fill"
-                    android:layout_columnWeight="1"
-                    android:layout_rowWeight="1"
-                    android:layout_margin="15dp"
-                    android:text="Anime" />
-
-                <Button
-                    android:id="@+id/btn_category_3"
-                    android:layout_gravity="fill"
-                    android:layout_columnWeight="1"
-                    android:layout_rowWeight="1"
-                    android:layout_margin="15dp"
-                    android:text="Kinh dị" />
-
-                <Button
-                    android:id="@+id/btn_category_4"
-                    android:layout_gravity="fill"
-                    android:layout_columnWeight="1"
-                    android:layout_rowWeight="1"
-                    android:layout_margin="15dp"
-                    android:text="COMEDY" />
-
-                <Button
-                    android:id="@+id/btn_category_5"
-                    android:layout_gravity="fill"
-                    android:layout_columnWeight="1"
-                    android:layout_rowWeight="1"
-                    android:layout_margin="15dp"
-                    android:text="Drama" />
-
-                <Button
-                    android:id="@+id/btn_category_6"
-                    android:layout_gravity="fill"
-                    android:layout_columnWeight="1"
-                    android:layout_rowWeight="1"
-                    android:layout_margin="15dp"
-                    android:text="Action" />
-
-                <Button
-                    android:id="@+id/btn_category_7"
-                    android:layout_gravity="fill"
-                    android:layout_columnWeight="1"
-                    android:layout_rowWeight="1"
-                    android:layout_margin="15dp"
-                    android:text="Ngôn tình" />
-
-                <Button
-                    android:id="@+id/btn_category_8"
-                    android:layout_gravity="fill"
-                    android:layout_columnWeight="1"
-                    android:layout_rowWeight="1"
-                    android:layout_margin="15dp"
-                    android:text="đam mỹ" />
-
-                <Button
-                    android:id="@+id/btn_category_9"
-                    android:layout_gravity="fill"
-                    android:layout_columnWeight="1"
-                    android:layout_rowWeight="1"
-                    android:layout_margin="15dp"
-                    android:text="Manga" />
-
-                <Button
-                    android:id="@+id/btn_category_10"
-                    android:layout_gravity="fill"
-                    android:layout_columnWeight="1"
-                    android:layout_rowWeight="1"
-                    android:layout_margin="15dp"
-                    android:text="Thiếu nhi" />
-            </GridLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="300dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="start">
-
-        <include layout="@layout/navdrawer" />
-    </RelativeLayout>
 
 </androidx.drawerlayout.widget.DrawerLayout>
