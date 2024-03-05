@@ -6,10 +6,13 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -72,6 +75,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        gdvDSTruyen.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int pos, long id) {
+                Intent intent = new Intent(getApplicationContext(), ItemClickedActivity.class);
+                intent.putExtra("id",pos);
+                startActivity(intent);
+            }
+        });
     }
 
 
@@ -125,6 +136,7 @@ public class MainActivity extends AppCompatActivity {
         truyenTranhArrayList.add(new TruyenTranh("Ác Qủy Trở Lại Học Đường", "Chap 53", "https://www.nettruyentr.vn/images/comics/ac-quy-tro-lai-hoc-duong.jpg"));
 
         adapter = new TruyenTranhAdapter(this, 0, truyenTranhArrayList);
+
     }
 
     private void anhXa() {
@@ -155,7 +167,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
     @Override
     public void onBackPressed() {
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
