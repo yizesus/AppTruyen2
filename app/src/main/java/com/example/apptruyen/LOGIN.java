@@ -29,10 +29,9 @@ import java.util.regex.Pattern;
 public class LOGIN extends AppCompatActivity {
     EditText passID, emailID;
     Button loginBUT;
-    TextView Register;
+    TextView Register, forgotPassword;
     ProgressBar progressBar;
     FirebaseAuth mAuth;
-    TextView forgotPassword;
 
     @Override
     public void onStart() {
@@ -85,59 +84,6 @@ public class LOGIN extends AppCompatActivity {
             }
         });
 
-        forgotPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder= new AlertDialog.Builder(LOGIN.this);
-                View dialogView = getLayoutInflater().inflate(R.layout.activity_forgot_p,null);
-                EditText emailBox = dialogView.findViewById(R.id.emailBox);
-
-                builder.setView(dialogView);
-                AlertDialog dialog=builder.create();
-                dialog.findViewById(R.id.bntReset).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        String userEmail=emailBox.getText().toString();
-                        if(TextUtils.isEmpty(userEmail) && !Patterns.EMAIL_ADDRESS.matcher(userEmail).matches()){
-                            Toast.makeText(LOGIN.this, "Enter your registered email", Toast.LENGTH_SHORT).show();
-                            return;
-                        }
-                        mAuth.sendPasswordResetEmail(userEmail).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if(task.isSuccessful())
-                                {
-                                    Toast.makeText(LOGIN.this, "Check your email", Toast.LENGTH_SHORT).show();
-                                    dialog.dismiss();
-                                }
-                                else
-                                {
-                                    Toast.makeText(LOGIN.this, "Unable to send, failed", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
-                    }
-                });
-                dialogView.findViewById(R.id.bntCancel).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.dismiss();
-                    }
-                });
-                if(dialog.getWindow()!=null)
-                {
-                    dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
-                }
-                dialog.show();
-            }
-        });
-        forgotPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                moForgotPass();
-            }
-        });
-
 
         Register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,21 +92,25 @@ public class LOGIN extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ForgotPassword.class);
+                startActivity(intent);
+            }
+        });
     }
 
-    private void moForgotPass() {
-        Intent intent= new Intent(LOGIN.this,ForgotP.class);
-        startActivity(intent);
-    }
 
     private void addControls() {
+        forgotPassword = findViewById(R.id.Forgot_Password);
         progressBar=findViewById(R.id.progressBar);
         Register = findViewById(R.id.tv_register);
         passID = findViewById(R.id.passID);
         loginBUT = findViewById(R.id.loginBUT);
         mAuth = FirebaseAuth.getInstance();
         emailID = findViewById(R.id.emailID);
-        forgotPassword=findViewById(R.id.Forgot_Password);
     }
 
     @Override
