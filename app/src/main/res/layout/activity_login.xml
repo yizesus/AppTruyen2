@@ -13,14 +13,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@id/tv_back"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="QUAY VỀ"
-            android:textSize="40sp"
-            android:gravity="center"
-            android:layout_margin="40dp" />
         <androidx.cardview.widget.CardView
             android:layout_width="100dp"
             android:layout_height="100dp"
@@ -52,7 +44,7 @@
                 android:layout_marginTop="30dp"
                 android:background="@drawable/lavender"
                 android:drawableLeft="@drawable/accpic"
-                android:hint="Name:"
+                android:hint="Email"
                 android:padding="8dp" />
 
             <EditText
@@ -62,11 +54,13 @@
                 android:layout_marginTop="30dp"
                 android:background="@drawable/lavender"
                 android:drawableLeft="@drawable/passpic"
-                android:hint="Password:"
+                android:hint="Password"
                 android:inputType="textPassword"
                 android:padding="8dp" />
+
             <ProgressBar
                 android:id="@+id/progressBar"
+                android:layout_gravity="center"
                 android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -84,11 +78,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nếu bạn chưa có tài khoản , vui lòng đăng ký tại đây"
+                android:text="chưa có tài khoản? đăng ký tại đây"
                 android:textSize="16sp"
                 android:gravity="center"
                 android:textColor="@color/blue"
-                android:id="@+id/IfLogIn2"
+                android:id="@+id/tv_register"
                 android:layout_marginTop="10dp" />
             <TextView
                 android:layout_width="wrap_content"
@@ -104,8 +98,6 @@
 
 
         </LinearLayout>
-
-
     </LinearLayout>
 
 </LinearLayout>

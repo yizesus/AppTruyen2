@@ -36,19 +36,18 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
-        android:orientation="vertical"
-        android:padding="20dp">
+        android:orientation="vertical">
 
 
         <EditText
             android:id="@+id/emailID"
             android:layout_width="350dp"
             android:layout_height="60dp"
+            android:layout_gravity="center"
             android:layout_marginTop="30dp"
             android:background="@drawable/lavender"
             android:drawableLeft="@drawable/emailpic"
-            android:hint="Email:"
+            android:hint="Email"
             android:padding="8dp" />
 
 
@@ -57,14 +56,17 @@
             android:id="@+id/passID"
             android:layout_width="350dp"
             android:layout_height="60dp"
+            android:layout_gravity="center"
             android:layout_marginTop="30dp"
             android:background="@drawable/lavender"
             android:drawableLeft="@drawable/passpic"
-            android:hint="Password:"
-            android:password="true"
+            android:hint="Password"
+            android:inputType="textPassword"
             android:padding="8dp" />
+
         <ProgressBar
             android:id="@+id/progressBar"
+            android:layout_gravity="center"
             android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -75,22 +77,11 @@
             android:layout_gravity="center"
             app:cornerRadius="30dp"
             android:layout_marginTop="30dp"
-            android:id="@+id/signup_but"
+            android:id="@+id/btn_signup"
             android:text="Đăng Ký"
             android:textSize="25dp" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Nếu bạn đã có tài khoản, vui lòng đăng nhập tại đây"
-            android:textSize="16sp"
-            android:gravity="center"
-            android:textColor="@color/blue"
-            android:id="@+id/IfLogIn"
-            android:layout_marginTop="10dp" />
-
 
     </LinearLayout>
-
 
 </LinearLayout>

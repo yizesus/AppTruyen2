@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseUser user;
     DrawerLayout drawer_layout;
-    LinearLayout DangNhapID , TheLoaiID, homeID;
+    LinearLayout TheLoaiID, homeID;
     ImageView menu;
 
     GridView gdvDSTruyen;
@@ -94,12 +94,6 @@ public class MainActivity extends AppCompatActivity {
                 redirectActivity(MainActivity.this, Category.class);
             }
         });
-        DangNhapID.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                redirectActivity(MainActivity.this, LOGIN.class);
-            }
-        });
 
         gdvDSTruyen.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -115,7 +109,6 @@ public class MainActivity extends AppCompatActivity {
     private void addControls() {
         drawer_layout = findViewById(R.id.drawer_layout);
         menu = findViewById(R.id.menu);
-        DangNhapID = findViewById(R.id.DangNhapID);
         homeID = findViewById(R.id.homeID);
         TheLoaiID = findViewById(R.id.TheLoaiID);
         emailtv = findViewById(R.id.userLogOut);

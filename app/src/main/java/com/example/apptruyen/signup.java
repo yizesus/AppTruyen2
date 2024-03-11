@@ -19,23 +19,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class signup extends AppCompatActivity {
-    TextView IfLogIn, Back;
+    TextView Back;
     Button signup_but;
-    EditText passID, nameID, emailID;
+    EditText passID, emailID;
     FirebaseAuth mAuth;
     ProgressBar progressBar;
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
-            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-            startActivity(intent);
-            finish();
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,49 +32,37 @@ public class signup extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
         mAuth = FirebaseAuth.getInstance();
         addControls();
+
         signup_but.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
+
                 progressBar.setVisibility(View.VISIBLE);
-                String username = nameID.getText().toString().trim();
                 String password = passID.getText().toString().trim();
                 String Email = emailID.getText().toString().trim();
-                Intent intent = new Intent(signup.this, LOGIN.class);
-                intent.putExtra("username", username);
-                intent.putExtra("password", password);
-                intent.putExtra("email", Email);
-                startActivity(intent);
 
                 mAuth.createUserWithEmailAndPassword(Email, password)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                progressBar.setVisibility(View.GONE);
                                 if (task.isSuccessful()) {
-
-                                    Toast.makeText(getApplicationContext(), "Create successful", Toast.LENGTH_SHORT).show();
+                                    // Sign in success, update UI with the signed-in user's information
+                                    Intent intent = new Intent(getApplicationContext(),LOGIN.class);
+                                    startActivity(intent);
+                                    Toast.makeText(signup.this, "Account Created",
+                                            Toast.LENGTH_SHORT).show();
                                 } else {
-
+                                    // If sign in fails, display a message to the user.
                                     Toast.makeText(signup.this, "Authentication failed.",
                                             Toast.LENGTH_SHORT).show();
-
                                 }
                             }
                         });
 
-                /////
-
-                /////
 
             }
         });
-        IfLogIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(signup.this, LOGIN.class);
-                startActivity(intent);
-            }
-        });
+
         Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,10 +75,8 @@ public class signup extends AppCompatActivity {
     private void addControls() {
         progressBar = findViewById(R.id.progressBar);
         Back = findViewById(R.id.tv_back);
-        IfLogIn = findViewById(R.id.IfLogIn);
-        signup_but = findViewById(R.id.signup_but);
+        signup_but = findViewById(R.id.btn_signup);
         passID = findViewById(R.id.passID);
-//        nameID = findViewById(R.id.nameID);
         emailID = findViewById(R.id.emailID);
     }
 }

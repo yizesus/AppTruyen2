@@ -29,7 +29,7 @@ import java.util.regex.Pattern;
 public class LOGIN extends AppCompatActivity {
     EditText passID, emailID;
     Button loginBUT;
-    TextView IfLogIn2, Back;
+    TextView Register;
     ProgressBar progressBar;
     FirebaseAuth mAuth;
     TextView forgotPassword;
@@ -82,9 +82,6 @@ public class LOGIN extends AppCompatActivity {
                                 }
                             }
                         });
-
-                /////
-
             }
         });
 
@@ -142,17 +139,10 @@ public class LOGIN extends AppCompatActivity {
         });
 
 
-        IfLogIn2.setOnClickListener(new View.OnClickListener() {
+        Register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), signup.class);
-                startActivity(intent);
-            }
-        });
-        Back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LOGIN.this, MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -165,8 +155,7 @@ public class LOGIN extends AppCompatActivity {
 
     private void addControls() {
         progressBar=findViewById(R.id.progressBar);
-        Back = findViewById(R.id.tv_back);
-        IfLogIn2 = findViewById(R.id.IfLogIn2);
+        Register = findViewById(R.id.tv_register);
         passID = findViewById(R.id.passID);
         loginBUT = findViewById(R.id.loginBUT);
         mAuth = FirebaseAuth.getInstance();
