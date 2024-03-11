@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     GridView gdvDSTruyen;
     TruyenTranhAdapter adapter;
     ArrayList<TruyenTranh> truyenTranhArrayList;
-    Button emailtv;
+    Button DangXuat;
     EditText edtTimKiem;
 
     @Override
@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         auth = FirebaseAuth.getInstance();
-        emailtv = findViewById(R.id.userLogOut);
         user = auth.getCurrentUser();
 
         addControls();
@@ -60,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
-        emailtv.setOnClickListener(new View.OnClickListener() {
+        DangXuat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
@@ -111,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
         menu = findViewById(R.id.menu);
         homeID = findViewById(R.id.homeID);
         TheLoaiID = findViewById(R.id.TheLoaiID);
-        emailtv = findViewById(R.id.userLogOut);
+        DangXuat = findViewById(R.id.userLogOut);
 
 
     }
