@@ -7,6 +7,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -20,19 +21,23 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.apptruyen.adapter.TruyenTranhAdapter;
 import com.example.apptruyen.object.TruyenTranh;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    FirebaseAuth auth;
+    FirebaseUser user;
     DrawerLayout drawer_layout;
-    LinearLayout DangNhapID, DangXuatID, TheLoaiID, homeID;
+    LinearLayout DangNhapID , TheLoaiID, homeID;
     ImageView menu;
 
     GridView gdvDSTruyen;
     TruyenTranhAdapter adapter;
     ArrayList<TruyenTranh> truyenTranhArrayList;
-
+    Button emailtv;
     EditText edtTimKiem;
 
     @Override
@@ -40,12 +45,33 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        auth = FirebaseAuth.getInstance();
+        emailtv = findViewById(R.id.userLogOut);
+        user = auth.getCurrentUser();
+
         addControls();
 
         init();
         anhXa();
         setUp();
         setClick();
+        if (user == null) {
+            Intent intent = new Intent(getApplicationContext(), LOGIN.class);
+            startActivity(intent);
+            finish();
+        }
+        emailtv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(getApplicationContext(), LOGIN.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+
+
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
         DangNhapID = findViewById(R.id.DangNhapID);
         homeID = findViewById(R.id.homeID);
         TheLoaiID = findViewById(R.id.TheLoaiID);
-        DangXuatID = findViewById(R.id.DangXuatID);
+        emailtv = findViewById(R.id.userLogOut);
 
 
     }
