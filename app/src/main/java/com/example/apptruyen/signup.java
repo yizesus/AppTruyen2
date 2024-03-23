@@ -2,6 +2,7 @@ package com.example.apptruyen;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -37,10 +38,17 @@ public class signup extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                progressBar.setVisibility(View.VISIBLE);
                 String password = passID.getText().toString().trim();
                 String Email = emailID.getText().toString().trim();
-
+                if(TextUtils.isEmpty(Email)){
+                    Toast.makeText(signup.this, "nhập email", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(TextUtils.isEmpty(password)){
+                    Toast.makeText(signup.this, "nhập password", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                progressBar.setVisibility(View.VISIBLE);
                 mAuth.createUserWithEmailAndPassword(Email, password)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override

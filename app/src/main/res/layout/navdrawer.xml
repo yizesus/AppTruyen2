@@ -83,6 +83,27 @@
 
 
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_CRUD"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="12dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="ADMIN"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:drawableLeft="@drawable/baseline_account_circle_24"
+
+            android:drawablePadding="8dp" />
+
+
+    </LinearLayout>
 
 
     <View

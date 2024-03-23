@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "1054443004306",
+    "firebase_url": "https://apptruyen-b5b7e-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "apptruyen-b5b7e",
+    "storage_bucket": "apptruyen-b5b7e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1054443004306:android:6a87703c44a5024f2ce14b",
+        "android_client_info": {
+          "package_name": "com.example.apptruyen"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAToOhVBrnNpWHjV88jZhfQYbRwkpiNIDc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

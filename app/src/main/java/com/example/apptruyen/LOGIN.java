@@ -53,14 +53,17 @@ public class LOGIN extends AppCompatActivity {
         loginBUT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressBar.setVisibility(View.VISIBLE);
                 String password = passID.getText().toString().trim();
                 String Email = emailID.getText().toString().trim();
-                Intent intent = new Intent(LOGIN.this, LOGIN.class);
-                intent.putExtra("password", password);
-                intent.putExtra("email", Email);
-                startActivity(intent);
-
+                if(TextUtils.isEmpty(Email)){
+                    Toast.makeText(LOGIN.this, "nhập email", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(TextUtils.isEmpty(password)){
+                    Toast.makeText(LOGIN.this, "nhập password", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                progressBar.setVisibility(View.VISIBLE);
                 /////
                 mAuth.signInWithEmailAndPassword(Email, password)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -75,7 +78,7 @@ public class LOGIN extends AppCompatActivity {
     
                                 } else {
 
-                                    Toast.makeText(LOGIN.this, "Authentication failed.",
+                                    Toast.makeText(LOGIN.this, "Đăng nhập không hợp lệ, vui lòng kiểm tra lại",
                                             Toast.LENGTH_SHORT).show();
                                     
                                 }

@@ -18,27 +18,36 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apptruyen.adapter.TruyenTranhAdapter;
 import com.example.apptruyen.object.TruyenTranh;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
+
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+
     FirebaseAuth auth;
     FirebaseUser user;
     DrawerLayout drawer_layout;
-    LinearLayout TheLoaiID, homeID;
+    LinearLayout TheLoaiID, homeID, crudID;
     ImageView menu;
 
-    GridView gdvDSTruyen;
-    TruyenTranhAdapter adapter;
-    ArrayList<TruyenTranh> truyenTranhArrayList;
+//    GridView gdvDSTruyen;
+//
+//    ArrayList<TruyenTranh> truyenTranhArrayList;
     Button DangXuat;
     EditText edtTimKiem;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,10 +59,10 @@ public class MainActivity extends AppCompatActivity {
 
         addControls();
 
-        init();
+//        init();
         anhXa();
-        setUp();
-        setClick();
+//        setUp();
+//        setClick();
         if (user == null) {
             Intent intent = new Intent(getApplicationContext(), LOGIN.class);
             startActivity(intent);
@@ -94,15 +103,26 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        gdvDSTruyen.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        crudID.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int pos, long id) {
-                Intent intent = new Intent(getApplicationContext(), ItemClickedActivity.class);
-                intent.putExtra("id",pos);
-                startActivity(intent);
+            public void onClick(View v) {
+                redirectActivity(MainActivity.this, CRUD.class);
             }
         });
+
+//        gdvDSTruyen.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int pos, long id) {
+//                Intent intent = new Intent(getApplicationContext(), ItemClickedActivity.class);
+//                intent.putExtra("id",pos);
+//                startActivity(intent);
+//            }
+//        });
+//        //////////
+
+
     }
+
 
 
     private void addControls() {
@@ -111,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
         homeID = findViewById(R.id.homeID);
         TheLoaiID = findViewById(R.id.TheLoaiID);
         DangXuat = findViewById(R.id.userLogOut);
+        crudID = findViewById(R.id.tv_CRUD);
 
 
     }
@@ -138,53 +159,53 @@ public class MainActivity extends AppCompatActivity {
         closeDrawer(drawer_layout);
     }
 
-    private void init() {
-        truyenTranhArrayList = new ArrayList<>();
-        truyenTranhArrayList.add(new TruyenTranh("Forward", "Chap 2", "https://www.nettruyentr.vn/images/comics/forward.jpg"));
-        truyenTranhArrayList.add(new TruyenTranh("Cao Võ: Hạ Cánh Đến Một Vạn Năm Sau", "Chap 88", "https://www.nettruyentr.vn/images/comics/cao-vo-ha-canh-den-mot-van-nam-sau.jpg"));
-        truyenTranhArrayList.add(new TruyenTranh("Cặp Đôi Hướng Nội", "Chap 27", "https://www.nettruyentr.vn/images/comics/cap-doi-huong-noi.jpg"));
-        truyenTranhArrayList.add(new TruyenTranh("The Gamer", "Chap 418", "https://www.nettruyentr.vn/images/comics/the-gamer.jpg"));
-        truyenTranhArrayList.add(new TruyenTranh("Thám Tử Conan", "Chap 1125", "https://st.nettruyenbb.com/data/comics/30/tham-tu-conan-7281.jpg"));
-        truyenTranhArrayList.add(new TruyenTranh("Tôi Sẽ Thoát Khỏi Đóa Hoa Của Thử Thách", "Chap 3", "https://www.nettruyentr.vn/images/comics/toi-se-thoat-khoi-doa-hoa-cua-thu-thach.jpg"));
-        truyenTranhArrayList.add(new TruyenTranh("Nhà Tôi Có Một Con Chuột", "Chap 27", "https://www.nettruyentr.vn/images/comics/nha-toi-co-mot-con-chuot.jpg"));
-        truyenTranhArrayList.add(new TruyenTranh("Không Chỉ Là Bắt Nạt", "Chap 132", "https://www.nettruyentr.vn/images/comics/khong-chi-la-bat-nat.jpg"));
-        truyenTranhArrayList.add(new TruyenTranh("Hắc Kị Sĩ Thiên Tài Giới Hạn Thời Gian", "Chap 47", "https://www.nettruyentr.vn/images/comics/hac-ki-si-thien-tai-gioi-han-thoi-gian.jpg"));
-        truyenTranhArrayList.add(new TruyenTranh("Người Chơi Mới Cấp Tối Đa", "Chap 147", "https://www.nettruyentr.vn/images/comics/nguoi-choi-moi-cap-toi-da.jpg"));
-        truyenTranhArrayList.add(new TruyenTranh("Khởi Đầu Có Kiếm Vực, Ta Sẽ Trở Thành Kiếm Thần", "Chap 149", "https://www.nettruyentr.vn/images/comics/khoi-dau-co-kiem-vuc-ta-se-tro-thanh-kiem-than.jpg"));
-        truyenTranhArrayList.add(new TruyenTranh("Ác Qủy Trở Lại Học Đường", "Chap 53", "https://www.nettruyentr.vn/images/comics/ac-quy-tro-lai-hoc-duong.jpg"));
-
-        adapter = new TruyenTranhAdapter(this, 0, truyenTranhArrayList);
-
-    }
+//    private void init() {
+//        truyenTranhArrayList = new ArrayList<>();
+//        truyenTranhArrayList.add(new TruyenTranh("Forward", "Chap 2", "https://www.nettruyentr.vn/images/comics/forward.jpg"));
+//        truyenTranhArrayList.add(new TruyenTranh("Cao Võ: Hạ Cánh Đến Một Vạn Năm Sau", "Chap 88", "https://www.nettruyentr.vn/images/comics/cao-vo-ha-canh-den-mot-van-nam-sau.jpg"));
+//        truyenTranhArrayList.add(new TruyenTranh("Cặp Đôi Hướng Nội", "Chap 27", "https://www.nettruyentr.vn/images/comics/cap-doi-huong-noi.jpg"));
+//        truyenTranhArrayList.add(new TruyenTranh("The Gamer", "Chap 418", "https://www.nettruyentr.vn/images/comics/the-gamer.jpg"));
+//        truyenTranhArrayList.add(new TruyenTranh("Thám Tử Conan", "Chap 1125", "https://st.nettruyenbb.com/data/comics/30/tham-tu-conan-7281.jpg"));
+//        truyenTranhArrayList.add(new TruyenTranh("Tôi Sẽ Thoát Khỏi Đóa Hoa Của Thử Thách", "Chap 3", "https://www.nettruyentr.vn/images/comics/toi-se-thoat-khoi-doa-hoa-cua-thu-thach.jpg"));
+//        truyenTranhArrayList.add(new TruyenTranh("Nhà Tôi Có Một Con Chuột", "Chap 27", "https://www.nettruyentr.vn/images/comics/nha-toi-co-mot-con-chuot.jpg"));
+//        truyenTranhArrayList.add(new TruyenTranh("Không Chỉ Là Bắt Nạt", "Chap 132", "https://www.nettruyentr.vn/images/comics/khong-chi-la-bat-nat.jpg"));
+//        truyenTranhArrayList.add(new TruyenTranh("Hắc Kị Sĩ Thiên Tài Giới Hạn Thời Gian", "Chap 47", "https://www.nettruyentr.vn/images/comics/hac-ki-si-thien-tai-gioi-han-thoi-gian.jpg"));
+//        truyenTranhArrayList.add(new TruyenTranh("Người Chơi Mới Cấp Tối Đa", "Chap 147", "https://www.nettruyentr.vn/images/comics/nguoi-choi-moi-cap-toi-da.jpg"));
+//        truyenTranhArrayList.add(new TruyenTranh("Khởi Đầu Có Kiếm Vực, Ta Sẽ Trở Thành Kiếm Thần", "Chap 149", "https://www.nettruyentr.vn/images/comics/khoi-dau-co-kiem-vuc-ta-se-tro-thanh-kiem-than.jpg"));
+//        truyenTranhArrayList.add(new TruyenTranh("Ác Qủy Trở Lại Học Đường", "Chap 53", "https://www.nettruyentr.vn/images/comics/ac-quy-tro-lai-hoc-duong.jpg"));
+//
+//        adapter = new TruyenTranhAdapter(this, 0, truyenTranhArrayList);
+//
+//    }
 
     private void anhXa() {
-        gdvDSTruyen = findViewById(R.id.gdvDSTruyen);
+//        gdvDSTruyen = findViewById(R.id.gdvDSTruyen);
         edtTimKiem = findViewById(R.id.edtTimKiem);
     }
 
-    private void setUp() {
-        gdvDSTruyen.setAdapter(adapter);
-    }
+//    private void setUp() {
+//        gdvDSTruyen.setAdapter(adapter);
+//    }
 
-    private void setClick() {
-        edtTimKiem.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                String s = edtTimKiem.getText().toString();
-                adapter.sortTruyen(s);
-            }
-        });
-    }
+//    private void setClick() {
+//        edtTimKiem.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable editable) {
+//                String s = edtTimKiem.getText().toString();
+//                adapter.sortTruyen(s);
+//            }
+//        });
+//    }
     @Override
     public void onBackPressed() {
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
