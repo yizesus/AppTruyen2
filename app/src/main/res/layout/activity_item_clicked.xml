@@ -18,6 +18,7 @@
 
         <include layout="@layout/toolbar_detail" />
         <TextView
+            android:id="@+id/nametext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Tên Truyện"
@@ -33,14 +34,11 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="250dp"
-                android:src="@drawable/truyen" />
-
-            <TextView
+                android:id="@+id/img1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Thể loại: " />
+                android:src="@drawable/truyen" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -79,6 +77,7 @@
                 android:layout_marginVertical="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -87,35 +86,34 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tác giả: "
+                    android:text="Thể loại:"
                     android:textSize="16dp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/tv_author_detail"
+                    android:id="@+id/coursetext"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="16dp" />
             </LinearLayout>
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginVertical="5dp">-->
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp">
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Tác giả: "-->
+<!--                    android:textSize="16dp"-->
+<!--                    android:textStyle="bold" />-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Năm xuất bản: "
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tv_publishyear_detail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="16dp" />
-            </LinearLayout>
+<!--                <TextView-->
+<!--                    android:id="@+id/tv_author_detail"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textSize="16dp" />-->
+<!--            </LinearLayout>-->
 
             <TextView
                 android:layout_width="match_parent"
@@ -140,7 +138,7 @@
             android:layout_marginTop="15dp"
             android:paddingHorizontal="8dp">
             <TextView
-                android:text="Bình luận"
+                android:text="Chapter"
                 android:textStyle="bold"
                 android:textSize="20dp"
                 android:gravity="center"
@@ -156,38 +154,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="8dp"
-                android:nestedScrollingEnabled="false"
-                >
+                android:nestedScrollingEnabled="false"/>
 
-            </androidx.recyclerview.widget.RecyclerView>
-            <View
-                android:background="#EEEEEE"
-                android:layout_marginVertical="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"/>
-            <TextView
-                android:text="Bình luận ngay"
-                android:textSize="17dp"
-                android:layout_marginVertical="8dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            <EditText
-                android:id="@+id/edt_comment"
-                android:singleLine="true"
-                android:hint="Bạn cảm thấy thế nào?"
-                android:padding="10dp"
-                android:maxLength="50"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            <Button
-                android:id="@+id/btn_comment"
-                android:text="Gửi"
-                android:textColor="@color/white"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="15dp"
-                android:textStyle="bold"
-                android:layout_gravity="right"/>
         </LinearLayout>
 
 

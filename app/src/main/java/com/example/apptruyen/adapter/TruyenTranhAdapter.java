@@ -15,9 +15,11 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.apptruyen.DetailTruyen;
 import com.example.apptruyen.R;
 ///////////////////////////////////////////////////////////////////////////////
 import com.example.apptruyen.model;
@@ -51,6 +53,8 @@ public class TruyenTranhAdapter extends FirebaseRecyclerAdapter<model,TruyenTran
         holder.course.setText(model.getCourse());
         holder.email.setText(model.getEmail());
         Glide.with(holder.img.getContext()).load(model.getPurl()).into(holder.img);
+
+
 
         holder.edit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,49 +145,7 @@ public class TruyenTranhAdapter extends FirebaseRecyclerAdapter<model,TruyenTran
         View view= LayoutInflater.from((parent.getContext())).inflate(R.layout.singlerow,parent,false);
         return  new myviewholder(view);
     }
-//    private Context ct;
-//    private ArrayList<TruyenTranh> arr;
-//
-//    public TruyenTranhAdapter(@NonNull Context context, int resource, @NonNull List<TruyenTranh> objects) {
-//        super(context, resource, objects);
-//        this.ct = context;
-//        this.arr = new ArrayList<>(objects);
-//    }
-//
-//    public void sortTruyen(String s) {
-//        s = s.toUpperCase();
-//        int k = 0;
-//        for (int i = 0; i < arr.size(); i++) {
-//            TruyenTranh t = arr.get(i);
-//            String ten = t.getTenTruyen().toUpperCase();
-//            if (ten.indexOf(s) >= 0) {
-//                arr.set(i, arr.get(k));
-//                arr.set(k, t);
-//                k++;
-//            }
-//        }
-//        notifyDataSetChanged();
-//    }
-//
-//    @NonNull
-//    @Override
-//    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-//        if (convertView == null) {
-//            LayoutInflater inflater = (LayoutInflater) ct.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//            convertView = inflater.inflate(R.layout.item_truyen, null);
-//        }
-//        if (arr.size() > 0) {
-//            TruyenTranh truyenTranh = this.arr.get(position);
-//            TextView tenTenTruyen = convertView.findViewById(R.id.tenTruyen);
-//            TextView tenSoChap = convertView.findViewById(R.id.soChap);
-//            ImageView imgAnhTruyen = convertView.findViewById(R.id.imgAnhTruyen);
-//
-//            tenTenTruyen.setText(truyenTranh.getTenTruyen());
-//            tenSoChap.setText(truyenTranh.getTenChap());
-//            Glide.with(this.ct).load(truyenTranh.getLinkAnh()).into(imgAnhTruyen);
-//        }
-//        return convertView;
-//    }
+
 
     class myviewholder extends RecyclerView.ViewHolder
     {

@@ -9,14 +9,14 @@
         android:layout_height="300dp">
 
         <ImageView
-            android:id="@+id/imgAnhTruyen"
+            android:id="@+id/img1"
             android:src="@drawable/truyen"
             android:scaleType="centerCrop"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
         <TextView
-            android:id="@+id/soChap"
+            android:id="@+id/emailtext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#a8000000"
@@ -28,7 +28,7 @@
     </RelativeLayout>
 
     <TextView
-        android:id="@+id/tenTruyen"
+        android:id="@+id/nametext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dp"

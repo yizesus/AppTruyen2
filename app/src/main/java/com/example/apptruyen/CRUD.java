@@ -1,5 +1,7 @@
 package com.example.apptruyen;
 
+import static com.example.apptruyen.MainActivity.redirectActivity;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -60,5 +62,9 @@ public class CRUD extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         adapter.stopListening();
+    }
+    public void onBackPressed() {
+        redirectActivity(CRUD.this, MainActivity.class);
+        super.onBackPressed();
     }
 }

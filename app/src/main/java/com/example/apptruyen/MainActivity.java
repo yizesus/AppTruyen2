@@ -3,38 +3,32 @@ package com.example.apptruyen;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
-import android.widget.AdapterView;
+import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.apptruyen.adapter.TruyenTranhAdapter;
-import com.example.apptruyen.object.TruyenTranh;
+import com.example.apptruyen.adapter.AdapterMain;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
-
-import java.util.ArrayList;
-
 public class MainActivity extends AppCompatActivity {
 
 
+    AdapterMain adapterMain;
+//    TruyenTranhAdapter adapter;
+    RecyclerView RecMain;
     FirebaseAuth auth;
     FirebaseUser user;
     DrawerLayout drawer_layout;
@@ -45,24 +39,62 @@ public class MainActivity extends AppCompatActivity {
 //
 //    ArrayList<TruyenTranh> truyenTranhArrayList;
     Button DangXuat;
-    EditText edtTimKiem;
-
-
+    SearchView edtTimKiem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
 
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        RecMain = (RecyclerView) findViewById(R.id.RecMain);
+        RecMain.setLayoutManager(new GridLayoutManager(this, 2));
+
+
+        FirebaseRecyclerOptions<model> options =
+                new FirebaseRecyclerOptions.Builder<model>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("students"), model.class)
+                        .build();
+        /////////
+        adapterMain = new AdapterMain(options);
+        RecMain.setAdapter(adapterMain);
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
         addControls();
+
 
 //        init();
         anhXa();
 //        setUp();
 //        setClick();
+
+        RecMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        edtTimKiem.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                processSearch(s);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                processSearch(s);
+                return false;
+            }
+        });
+
+
         if (user == null) {
             Intent intent = new Intent(getApplicationContext(), LOGIN.class);
             startActivity(intent);
@@ -77,8 +109,6 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-
 
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,18 +139,35 @@ public class MainActivity extends AppCompatActivity {
                 redirectActivity(MainActivity.this, CRUD.class);
             }
         });
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_main);
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//
+//        getSupportFragmentManager().beginTransaction().replace(R.id.wrapper, new rec_detail()).commit();
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//        gdvDSTruyen.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int pos, long id) {
-//                Intent intent = new Intent(getApplicationContext(), ItemClickedActivity.class);
-//                intent.putExtra("id",pos);
-//                startActivity(intent);
-//            }
-//        });
-//        //////////
+    }
 
-
+    private void processSearch(String s) {
+        FirebaseRecyclerOptions<model> options =
+                new FirebaseRecyclerOptions.Builder<model>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("students").orderByChild("name").startAt(s).endAt(s+"\uf8ff"), model.class)
+                        .build();
+        /////////
+        adapterMain= new AdapterMain(options);
+        adapterMain.startListening();
+        RecMain.setAdapter(adapterMain);
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        adapterMain.startListening();
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        adapterMain.stopListening();
     }
 
 
@@ -159,53 +206,11 @@ public class MainActivity extends AppCompatActivity {
         closeDrawer(drawer_layout);
     }
 
-//    private void init() {
-//        truyenTranhArrayList = new ArrayList<>();
-//        truyenTranhArrayList.add(new TruyenTranh("Forward", "Chap 2", "https://www.nettruyentr.vn/images/comics/forward.jpg"));
-//        truyenTranhArrayList.add(new TruyenTranh("Cao Võ: Hạ Cánh Đến Một Vạn Năm Sau", "Chap 88", "https://www.nettruyentr.vn/images/comics/cao-vo-ha-canh-den-mot-van-nam-sau.jpg"));
-//        truyenTranhArrayList.add(new TruyenTranh("Cặp Đôi Hướng Nội", "Chap 27", "https://www.nettruyentr.vn/images/comics/cap-doi-huong-noi.jpg"));
-//        truyenTranhArrayList.add(new TruyenTranh("The Gamer", "Chap 418", "https://www.nettruyentr.vn/images/comics/the-gamer.jpg"));
-//        truyenTranhArrayList.add(new TruyenTranh("Thám Tử Conan", "Chap 1125", "https://st.nettruyenbb.com/data/comics/30/tham-tu-conan-7281.jpg"));
-//        truyenTranhArrayList.add(new TruyenTranh("Tôi Sẽ Thoát Khỏi Đóa Hoa Của Thử Thách", "Chap 3", "https://www.nettruyentr.vn/images/comics/toi-se-thoat-khoi-doa-hoa-cua-thu-thach.jpg"));
-//        truyenTranhArrayList.add(new TruyenTranh("Nhà Tôi Có Một Con Chuột", "Chap 27", "https://www.nettruyentr.vn/images/comics/nha-toi-co-mot-con-chuot.jpg"));
-//        truyenTranhArrayList.add(new TruyenTranh("Không Chỉ Là Bắt Nạt", "Chap 132", "https://www.nettruyentr.vn/images/comics/khong-chi-la-bat-nat.jpg"));
-//        truyenTranhArrayList.add(new TruyenTranh("Hắc Kị Sĩ Thiên Tài Giới Hạn Thời Gian", "Chap 47", "https://www.nettruyentr.vn/images/comics/hac-ki-si-thien-tai-gioi-han-thoi-gian.jpg"));
-//        truyenTranhArrayList.add(new TruyenTranh("Người Chơi Mới Cấp Tối Đa", "Chap 147", "https://www.nettruyentr.vn/images/comics/nguoi-choi-moi-cap-toi-da.jpg"));
-//        truyenTranhArrayList.add(new TruyenTranh("Khởi Đầu Có Kiếm Vực, Ta Sẽ Trở Thành Kiếm Thần", "Chap 149", "https://www.nettruyentr.vn/images/comics/khoi-dau-co-kiem-vuc-ta-se-tro-thanh-kiem-than.jpg"));
-//        truyenTranhArrayList.add(new TruyenTranh("Ác Qủy Trở Lại Học Đường", "Chap 53", "https://www.nettruyentr.vn/images/comics/ac-quy-tro-lai-hoc-duong.jpg"));
-//
-//        adapter = new TruyenTranhAdapter(this, 0, truyenTranhArrayList);
-//
-//    }
 
     private void anhXa() {
 //        gdvDSTruyen = findViewById(R.id.gdvDSTruyen);
-        edtTimKiem = findViewById(R.id.edtTimKiem);
+        edtTimKiem = (SearchView) findViewById(R.id.edtTimKiem);
     }
-
-//    private void setUp() {
-//        gdvDSTruyen.setAdapter(adapter);
-//    }
-
-//    private void setClick() {
-//        edtTimKiem.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable editable) {
-//                String s = edtTimKiem.getText().toString();
-//                adapter.sortTruyen(s);
-//            }
-//        });
-//    }
     @Override
     public void onBackPressed() {
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {

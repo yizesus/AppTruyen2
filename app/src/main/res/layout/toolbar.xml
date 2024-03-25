@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="80dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/toolbarID"
     android:orientation="horizontal"
     android:padding="20dp"
@@ -14,16 +15,19 @@
         android:layout_height="wrap_content"
         android:src="@drawable/menu" />
 
-    <EditText
+    <androidx.appcompat.widget.SearchView
         android:id="@+id/edtTimKiem"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bg_edt"
         android:layout_marginLeft="25dp"
-        android:hint="nhập tên truyện"
-        android:textColor="@color/white"
-        android:textColorHint="#a9a9a9"
-        android:paddingLeft="15dp" />
+        android:background="@drawable/bg_edt"
+        android:paddingLeft="15dp"
+        android:textColorHint="#787575"
+        android:theme="@style/ThemeOverlay.SearchView"
+        app:iconifiedByDefault="false"
+        app:queryHint="nhập tên truyện"
+        app:closeIcon="@drawable/baseline_close_24"
+        app:searchIcon="@null" />
 
 
 </LinearLayout>
