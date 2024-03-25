@@ -2,13 +2,13 @@ package com.example.apptruyen;
 
 import static com.example.apptruyen.MainActivity.redirectActivity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apptruyen.adapter.TruyenTranhAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;

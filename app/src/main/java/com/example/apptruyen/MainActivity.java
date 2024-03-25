@@ -4,11 +4,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.view.GravityCompat;
@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     AdapterMain adapterMain;
-//    TruyenTranhAdapter adapter;
     RecyclerView RecMain;
     FirebaseAuth auth;
     FirebaseUser user;
@@ -35,9 +34,6 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout TheLoaiID, homeID, crudID;
     ImageView menu;
 
-//    GridView gdvDSTruyen;
-//
-//    ArrayList<TruyenTranh> truyenTranhArrayList;
     Button DangXuat;
     SearchView edtTimKiem;
 
@@ -63,23 +59,12 @@ public class MainActivity extends AppCompatActivity {
         /////////
         adapterMain = new AdapterMain(options);
         RecMain.setAdapter(adapterMain);
-
         ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         addControls();
-
-
-//        init();
         anhXa();
-//        setUp();
-//        setClick();
 
-        RecMain.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-            }
-        });
         edtTimKiem.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
@@ -139,37 +124,30 @@ public class MainActivity extends AppCompatActivity {
                 redirectActivity(MainActivity.this, CRUD.class);
             }
         });
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
-//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-//
-//        getSupportFragmentManager().beginTransaction().replace(R.id.wrapper, new rec_detail()).commit();
-        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
     }
 
     private void processSearch(String s) {
         FirebaseRecyclerOptions<model> options =
                 new FirebaseRecyclerOptions.Builder<model>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("students").orderByChild("name").startAt(s).endAt(s+"\uf8ff"), model.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("students").orderByChild("name").startAt(s).endAt(s + "\uf8ff"), model.class)
                         .build();
         /////////
-        adapterMain= new AdapterMain(options);
+        adapterMain = new AdapterMain(options);
         adapterMain.startListening();
         RecMain.setAdapter(adapterMain);
     }
+
     @Override
     protected void onStart() {
         super.onStart();
         adapterMain.startListening();
     }
+
     @Override
     protected void onStop() {
         super.onStop();
         adapterMain.stopListening();
     }
-
 
 
     private void addControls() {
@@ -211,6 +189,7 @@ public class MainActivity extends AppCompatActivity {
 //        gdvDSTruyen = findViewById(R.id.gdvDSTruyen);
         edtTimKiem = (SearchView) findViewById(R.id.edtTimKiem);
     }
+
     @Override
     public void onBackPressed() {
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
