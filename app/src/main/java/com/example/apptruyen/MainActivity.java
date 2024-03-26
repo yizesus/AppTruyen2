@@ -38,8 +38,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
+
+        addControls();
+        anhXa();
 
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
@@ -59,21 +61,17 @@ public class MainActivity extends AppCompatActivity {
         RecMain.setAdapter(adapterMain);
         ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        addControls();
-        anhXa();
-
 
         edtTimKiem.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public boolean onQueryTextSubmit(String s) {
-                processSearch(s);
+            public boolean onQueryTextSubmit(String query) {
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String s) {
                 processSearch(s);
-                return false;
+                return true;
             }
         });
 
@@ -129,11 +127,9 @@ public class MainActivity extends AppCompatActivity {
                 new FirebaseRecyclerOptions.Builder<model>()
                         .setQuery(FirebaseDatabase.getInstance().getReference().child("students").orderByChild("name").startAt(s).endAt(s + "\uf8ff"), model.class)
                         .build();
-        /////////
-        adapterMain = new AdapterMain(options);
-        adapterMain.startListening();
-        RecMain.setAdapter(adapterMain);
+        adapterMain.updateOptions(options);
     }
+
 
     @Override
     protected void onStart() {

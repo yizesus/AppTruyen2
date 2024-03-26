@@ -39,6 +39,7 @@ public class AdapterMain extends FirebaseRecyclerAdapter<model,AdapterMain.myvie
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), detail.class);
                 intent.putExtra("name",model.getName());
+                intent.putExtra("category",model.getCourse());
                 intent.putExtra("purl", model.getPurl());
                 view.getContext().startActivity(intent);
             }

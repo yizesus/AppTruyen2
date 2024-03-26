@@ -16,7 +16,7 @@ import com.bumptech.glide.Glide;
 public class detail extends AppCompatActivity {
 
     ImageView ivImg, back;
-    TextView tvName;
+    TextView tvName, tvCate;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,12 +24,15 @@ public class detail extends AppCompatActivity {
 
         back = findViewById(R.id.back);
         tvName = findViewById(R.id.nametext);
+        tvCate = findViewById(R.id.courseholder);
         ivImg = findViewById(R.id.imageholder);
 
         Intent intent = getIntent();
         String name = intent.getStringExtra("name");
         String purl = intent.getStringExtra("purl");
+        String category = intent.getStringExtra("category");
 
+        tvCate.setText(category);
         tvName.setText(name);
         Glide.with(this)
                 .load(purl)

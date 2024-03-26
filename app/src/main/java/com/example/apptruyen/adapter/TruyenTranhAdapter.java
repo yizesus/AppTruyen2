@@ -102,10 +102,10 @@ public class TruyenTranhAdapter extends FirebaseRecyclerAdapter<model,TruyenTran
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder builder=new AlertDialog.Builder(holder.img.getContext());
-                builder.setTitle("Delete Panel");
-                builder.setMessage("Delete...?");
+                builder.setTitle("Xóa Truyện");
+                builder.setMessage("xác nhận xóa truyện...?");
 
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         FirebaseDatabase.getInstance().getReference().child("students")
@@ -113,7 +113,7 @@ public class TruyenTranhAdapter extends FirebaseRecyclerAdapter<model,TruyenTran
                     }
                 });
 
-                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
