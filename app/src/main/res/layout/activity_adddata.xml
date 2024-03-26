@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/add_name"
         android:textSize="20sp"
-        android:hint="Your Name"
+        android:hint="nhập tên truyện"
         android:layout_marginBottom="15dp"
         android:textColor="#000"/>
 
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/add_course"
         android:textSize="20sp"
-        android:hint="Your Course"
+        android:hint="nhập thể loại"
         android:layout_marginBottom="15dp"
         android:textColor="#000"/>
 
@@ -32,7 +32,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/add_email"
         android:textSize="20sp"
-        android:hint="Your Email"
+        android:inputType="number"
+        android:hint="nhập số chap"
         android:layout_marginBottom="15dp"
         android:textColor="#000"/>
 
@@ -42,7 +43,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/add_purl"
         android:textSize="20sp"
-        android:hint="Profile Image URL"
+        android:hint="nhập URL bìa truyện"
         android:layout_marginBottom="15dp"
         android:textColor="#000"/>
 
@@ -52,14 +53,14 @@
         android:layout_marginBottom="15dp"
         android:id="@+id/add_submit"
         android:textSize="20sp"
-        android:text="Add to Firebase"/>
+        android:text="Thêm vào Firebase"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/add_back"
         android:textSize="20sp"
-        android:text="Back"/>
+        android:text="Trở về"/>
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>

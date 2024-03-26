@@ -9,7 +9,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="Update Content Panel"
+        android:textStyle="bold"
+        android:textAllCaps="true"
+        android:text="Cập nhật dữ liệu"
         android:background="@color/blue"
         android:textSize="25sp"
         android:gravity="center"
@@ -18,7 +20,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Image URL"
+        android:hint="URL bìa truyện"
         android:id="@+id/uimgurl"
         android:layout_marginTop="10dp"
         android:textSize="20sp"/>
@@ -26,7 +28,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Name"
+        android:hint="Tên truyện"
         android:id="@+id/uname"
         android:layout_marginTop="10dp"
         android:textSize="20sp"/>
@@ -34,7 +36,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Course"
+        android:hint="thể loại"
         android:id="@+id/ucourse"
         android:layout_marginTop="10dp"
         android:textSize="20sp"/>
@@ -42,7 +44,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Email"
+        android:hint="số chap"
         android:id="@+id/uemail"
         android:layout_marginTop="10dp"
         android:textSize="20sp"/>
@@ -50,11 +52,12 @@
     <Button
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="Update"
+        android:text="Cập nhật"
         android:id="@+id/usubmit"
         android:background="@color/blue"
         android:textColor="#fff"
         android:layout_gravity="center"
+        android:textStyle="bold"
         android:textSize="20sp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
