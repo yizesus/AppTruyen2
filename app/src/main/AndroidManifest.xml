@@ -26,9 +26,6 @@
             android:name=".ForgotPassword"
             android:exported="false" />
         <activity
-            android:name=".ItemClickedActivity"
-            android:exported="false" />
-        <activity
             android:name=".Category"
             android:exported="false" />
         <activity

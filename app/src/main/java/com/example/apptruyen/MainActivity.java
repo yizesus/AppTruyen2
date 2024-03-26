@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.view.GravityCompat;
@@ -17,7 +16,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apptruyen.adapter.AdapterMain;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -186,7 +184,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void anhXa() {
-//        gdvDSTruyen = findViewById(R.id.gdvDSTruyen);
         edtTimKiem = (SearchView) findViewById(R.id.edtTimKiem);
     }
 

@@ -1,5 +1,7 @@
 package com.example.apptruyen;
 
+import static com.example.apptruyen.MainActivity.redirectActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -17,7 +19,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class signup extends AppCompatActivity {
     TextView Back;
@@ -79,7 +80,11 @@ public class signup extends AppCompatActivity {
             }
         });
     }
-
+    @Override
+    public void onBackPressed() {
+        redirectActivity(signup.this, MainActivity.class);
+        super.onBackPressed();
+    }
     private void addControls() {
         progressBar = findViewById(R.id.progressBar);
         Back = findViewById(R.id.tv_back);

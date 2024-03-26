@@ -34,13 +34,12 @@ public class AdapterMain extends FirebaseRecyclerAdapter<model,AdapterMain.myvie
         holder.course.setText(model.getCourse());
         holder.email.setText(model.getEmail());
         Glide.with(holder.img.getContext()).load(model.getPurl()).into(holder.img);
-
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(view.getContext(), "Recycle Click" + position, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(view.getContext(), detail.class);
-                intent.putExtra("Tên Truyện", model.getName());
+                intent.putExtra("name",model.getName());
+                intent.putExtra("purl", model.getPurl());
                 view.getContext().startActivity(intent);
             }
         });

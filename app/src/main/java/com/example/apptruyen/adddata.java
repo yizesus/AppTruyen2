@@ -63,14 +63,14 @@ public class adddata extends AppCompatActivity {
                         course.setText("");
                         email.setText("");
                         purl.setText("");
-                        Toast.makeText(getApplicationContext(),"Inserted Successfully",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(),"Nhập dữ liệu thành công!",Toast.LENGTH_LONG).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e)
                     {
-                        Toast.makeText(getApplicationContext(),"Could not insert",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(),"Nhập dữ liệu thất bại!",Toast.LENGTH_LONG).show();
                     }
                 });
     }

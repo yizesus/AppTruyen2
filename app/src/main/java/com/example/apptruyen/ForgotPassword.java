@@ -1,7 +1,6 @@
 package com.example.apptruyen;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+import static com.example.apptruyen.MainActivity.redirectActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +11,9 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -80,7 +82,11 @@ public class ForgotPassword extends AppCompatActivity {
             }
         });
     }
-
+    @Override
+    public void onBackPressed() {
+        redirectActivity(ForgotPassword.this, MainActivity.class);
+        super.onBackPressed();
+    }
     private void addControls() {
         back = findViewById(R.id.tv_back);
         btnReset = findViewById(R.id.btn_forgot_pass);
