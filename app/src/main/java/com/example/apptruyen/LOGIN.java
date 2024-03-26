@@ -2,9 +2,11 @@ package com.example.apptruyen;
 
 import static com.example.apptruyen.MainActivity.redirectActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,10 +18,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class LOGIN extends AppCompatActivity {
     EditText passID, emailID;
@@ -27,6 +33,7 @@ public class LOGIN extends AppCompatActivity {
     TextView Register, forgotPassword;
     ProgressBar progressBar;
     FirebaseAuth mAuth;
+    FirebaseFirestore mStore;
 
     @Override
     public void onStart() {
@@ -48,8 +55,8 @@ public class LOGIN extends AppCompatActivity {
         loginBUT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String password = passID.getText().toString().trim();
-                String Email = emailID.getText().toString().trim();
+                String password = passID.getText().toString();
+                String Email = emailID.getText().toString();
                 if(TextUtils.isEmpty(Email)){
                     Toast.makeText(LOGIN.this, "nhập email", Toast.LENGTH_SHORT).show();
                     return;
@@ -101,6 +108,7 @@ public class LOGIN extends AppCompatActivity {
     }
 
 
+
     private void addControls() {
         forgotPassword = findViewById(R.id.Forgot_Password);
         progressBar=findViewById(R.id.progressBar);
@@ -108,6 +116,7 @@ public class LOGIN extends AppCompatActivity {
         passID = findViewById(R.id.passID);
         loginBUT = findViewById(R.id.loginBUT);
         mAuth = FirebaseAuth.getInstance();
+        mStore = FirebaseFirestore.getInstance();
         emailID = findViewById(R.id.emailID);
     }
 

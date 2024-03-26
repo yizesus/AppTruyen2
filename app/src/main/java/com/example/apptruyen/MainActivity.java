@@ -3,6 +3,7 @@ package com.example.apptruyen;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -17,9 +18,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apptruyen.adapter.AdapterMain;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button DangXuat;
     SearchView edtTimKiem;
+    FirebaseFirestore mStore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
+        mStore = FirebaseFirestore.getInstance();
+        checkUserAccessLevel(user.getUid());
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -64,7 +74,8 @@ public class MainActivity extends AppCompatActivity {
 
         edtTimKiem.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public boolean onQueryTextSubmit(String query) {
+            public boolean onQueryTextSubmit(String s) {
+                processSearch(s);
                 return false;
             }
 
@@ -127,7 +138,10 @@ public class MainActivity extends AppCompatActivity {
                 new FirebaseRecyclerOptions.Builder<model>()
                         .setQuery(FirebaseDatabase.getInstance().getReference().child("students").orderByChild("name").startAt(s).endAt(s + "\uf8ff"), model.class)
                         .build();
-        adapterMain.updateOptions(options);
+        adapterMain = new AdapterMain(options);
+        adapterMain.startListening();
+        RecMain.setAdapter(adapterMain);
+
     }
 
 
@@ -181,6 +195,22 @@ public class MainActivity extends AppCompatActivity {
 
     private void anhXa() {
         edtTimKiem = (SearchView) findViewById(R.id.edtTimKiem);
+    }
+
+    private void checkUserAccessLevel(String uid) {
+        DocumentReference df = mStore.collection("Users").document(uid);
+        df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Log.d("TAG", "onSuccess: " + documentSnapshot.getData());
+                if(Objects.equals(documentSnapshot.getString("isUser"), "1")){
+                    crudID.setVisibility(View.GONE);
+                }
+                if(Objects.equals(documentSnapshot.getString("isAdmin"), "1")){
+                    crudID.setVisibility(View.VISIBLE);
+                }
+            }
+        });
     }
 
     @Override
