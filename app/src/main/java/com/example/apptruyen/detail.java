@@ -2,6 +2,7 @@ package com.example.apptruyen;
 
 import static com.example.apptruyen.MainActivity.redirectActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -33,6 +34,7 @@ public class detail extends AppCompatActivity {
         Glide.with(this)
                 .load(purl)
                 .error(R.drawable.baseline_error_24)
+                .override(700)
                 .into(ivImg);
 
         back.setOnClickListener(new View.OnClickListener() {
